@@ -23,6 +23,10 @@ node_modules/
 #//////////////////////////
 .idea/
 
+main.scene
+main.scene.meta
+
+
 
 # General
 .DS_Store
