@@ -1,5 +1,6 @@
 
 import { _decorator, Component, RigidBody2D, Vec2, Collider2D, Contact2DType, CircleCollider2D, IPhysics2DContact, Label, game } from 'cc';
+import { gameManager } from './gameManager';
 const { ccclass, property } = _decorator;
 
 
@@ -10,6 +11,8 @@ export class pigController extends Component {
     @property
     flyspeed: number = 7;
 
+    @property(gameManager)
+    gm: gameManager | null = null;
 
     //飞行
     fly() {
@@ -37,7 +40,7 @@ export class pigController extends Component {
             console.info("得分");
 
         } else {
-            console.info("死亡");
+
         }
     }
 

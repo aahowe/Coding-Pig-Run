@@ -12,7 +12,7 @@ export class landController extends Component {
     speed: number = 100;
     //背景宽度
     @property
-    width: number = 288;
+    width: number = 320;
 
     start() {
 
@@ -24,10 +24,10 @@ export class landController extends Component {
             //计算下一帧移动到的位置
             let x: number = bg.position.x - this.speed * deltaTime;
             //设置新位置
-            bg.setPosition(new Vec3(x, -315, 0));
+            bg.setPosition(new Vec3(x, -460, 0));
             //如果背景图出了视野则移动到后方等待下一轮循环
-            if (bg.position.x < -this.width - 16) {
-                bg.setPosition(new Vec3(x + 3 * this.width, 0, 0));
+            if (bg.position.x < -this.width) {
+                bg.setPosition(new Vec3(x + 2 * this.width, 0, 0));
             }
         }
     }
