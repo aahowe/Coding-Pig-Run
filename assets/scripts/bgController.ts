@@ -19,10 +19,10 @@ export class bgController extends Component {
 
     //背景移动速度
     @property
-    speed: number = 50;
+    speed: number = 45;
     //背景宽度
     @property
-    width: number = 288;
+    width: number = 320;
 
 
     start() {

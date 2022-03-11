@@ -2,7 +2,7 @@
   "ver": "1.0.22",
   "importer": "image",
   "imported": true,
-  "uuid": "e83942d5-1ddd-44f7-be64-28f2ec41c4f2",
+  "uuid": "29e220ef-f18e-4ff1-acf5-2e7993aa04de",
   "files": [
     ".png",
     ".json"
@@ -10,14 +10,14 @@
   "subMetas": {
     "6c48a": {
       "importer": "texture",
-      "uuid": "e83942d5-1ddd-44f7-be64-28f2ec41c4f2@6c48a",
-      "displayName": "bg_day",
+      "uuid": "29e220ef-f18e-4ff1-acf5-2e7993aa04de@6c48a",
+      "displayName": "bg-export",
       "id": "6c48a",
       "name": "texture",
       "userData": {
         "wrapModeS": "clamp-to-edge",
         "wrapModeT": "clamp-to-edge",
-        "imageUuidOrDatabaseUri": "e83942d5-1ddd-44f7-be64-28f2ec41c4f2",
+        "imageUuidOrDatabaseUri": "29e220ef-f18e-4ff1-acf5-2e7993aa04de",
         "minfilter": "linear",
         "magfilter": "linear",
         "mipfilter": "none",
@@ -33,8 +33,8 @@
     },
     "f9941": {
       "importer": "sprite-frame",
-      "uuid": "e83942d5-1ddd-44f7-be64-28f2ec41c4f2@f9941",
-      "displayName": "bg_day",
+      "uuid": "29e220ef-f18e-4ff1-acf5-2e7993aa04de@f9941",
+      "displayName": "bg-export",
       "id": "f9941",
       "name": "spriteFrame",
       "userData": {
@@ -45,17 +45,17 @@
         "offsetY": 0,
         "trimX": 0,
         "trimY": 0,
-        "width": 288,
-        "height": 512,
-        "rawWidth": 288,
-        "rawHeight": 512,
+        "width": 320,
+        "height": 675,
+        "rawWidth": 320,
+        "rawHeight": 675,
         "borderTop": 0,
         "borderBottom": 0,
         "borderLeft": 0,
         "borderRight": 0,
         "packable": true,
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "e83942d5-1ddd-44f7-be64-28f2ec41c4f2@6c48a",
+        "imageUuidOrDatabaseUri": "29e220ef-f18e-4ff1-acf5-2e7993aa04de@6c48a",
         "atlasUuid": ""
       },
       "ver": "1.0.9",
@@ -69,6 +69,6 @@
   "userData": {
     "type": "sprite-frame",
     "hasAlpha": true,
-    "redirect": "e83942d5-1ddd-44f7-be64-28f2ec41c4f2@f9941"
+    "redirect": "29e220ef-f18e-4ff1-acf5-2e7993aa04de@f9941"
   }
 }
