@@ -1,5 +1,5 @@
 
-import { _decorator, Component, RigidBody2D, ButtonComponent, Sprite, Vec3, input, Input, EventTouch, Vec2 } from 'cc';
+import { _decorator, Component, RigidBody2D, ButtonComponent, Sprite, Vec3, input, Input, EventTouch, Vec2, __private } from 'cc';
 import { bgController } from './bgController';
 import { birdController } from './birdController';
 import { landController } from './landController';
@@ -45,13 +45,20 @@ export class gameManager extends Component {
     setInputActive(active: boolean) {
         if (active) {
             input.on(Input.EventType.TOUCH_START, this.onTouchStart, this);
+            input.on(Input.EventType.TOUCH_END, this.onTouchEnd, this);
         } else {
             input.off(Input.EventType.TOUCH_START, this.onTouchStart, this);
+            input.off(Input.EventType.TOUCH_END, this.onTouchEnd, this);
         }
+    }
+    onTouchEnd(event: EventTouch) {
+        this.bird.unfly();
+        console.info("结束飞行");
     }
 
     onTouchStart(event: EventTouch) {
         this.bird.fly();
+        console.info("开始飞行");
     }
 
     start() {
@@ -79,8 +86,7 @@ export class gameManager extends Component {
 
     //初始化方法
     init() {
-        //设置重力为0小鸟浮空
-        this.bird.getComponent(RigidBody2D).gravityScale = 0;
+
         //取消显示restart
         this.node.getChildByName("restart").getComponent(Sprite).enabled = false;
         this.node.getChildByName("restart").getComponent(ButtonComponent).enabled = false;
@@ -93,9 +99,6 @@ export class gameManager extends Component {
 
     //开始游戏
     startGame() {
-        //添加重力
-        this.bird.getComponent(RigidBody2D).gravityScale = 2;
-        this.bird.fly();
         //启用监听
         this.setInputActive(true);
         //禁用play按钮

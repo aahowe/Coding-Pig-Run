@@ -1,5 +1,5 @@
 import { gameManager } from './gameManager';
-import { _decorator, Component, RigidBody2D, Vec2, Collider2D, Contact2DType, CircleCollider2D, IPhysics2DContact, Label, game } from 'cc';
+import { _decorator, Component, RigidBody2D, Vec2, Collider2D, Contact2DType, CircleCollider2D, IPhysics2DContact, Label, game, RigidBodyComponent } from 'cc';
 const { ccclass, property } = _decorator;
 
 /**
@@ -17,7 +17,7 @@ const { ccclass, property } = _decorator;
 @ccclass('birdController')
 export class birdController extends Component {
 
-    flyspeed: number = 10;
+    flyspeed: number = 5;
     //得分
     @property
     score: number = 0;
@@ -36,6 +36,12 @@ export class birdController extends Component {
     fly() {
         this.getComponent(RigidBody2D).linearVelocity = new Vec2(0, this.flyspeed);
     }
+
+    unfly() {
+        this.getComponent(RigidBody2D).linearVelocity = new Vec2(0, -this.flyspeed);
+    }
+
+
 
     start() {
         // 注册单个碰撞体的回调函数
