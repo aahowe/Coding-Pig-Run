@@ -1,17 +1,16 @@
 
-import { _decorator, Component, RigidBody2D, Vec2, Collider2D, Contact2DType, CircleCollider2D, IPhysics2DContact, Label, game } from 'cc';
+import { _decorator, Component, RigidBody2D, Vec2, Collider2D, Contact2DType, IPhysics2DContact, PolygonCollider2D } from 'cc';
 import { gameManager } from './gameManager';
+
 const { ccclass, property } = _decorator;
 
 
 @ccclass('pigController')
 export class pigController extends Component {
 
-    //飞行往上的速度
-    @property
     flyspeed: number = 7;
 
-    @property(gameManager)
+    @property
     gm: gameManager | null = null;
 
     //飞行
@@ -25,9 +24,10 @@ export class pigController extends Component {
         //this.getComponent(RigidBody2D).linearVelocity = new Vec2(0, -this.flyspeed);
     }
 
+
     start() {
         // 注册单个碰撞体的回调函数
-        let collider = this.getComponent(CircleCollider2D);
+        let collider = this.getComponent(PolygonCollider2D);
         if (collider) {
             collider.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);
         }
@@ -40,6 +40,7 @@ export class pigController extends Component {
             console.info("得分");
 
         } else {
+            console.info("end");
 
         }
     }

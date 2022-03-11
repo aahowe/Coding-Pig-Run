@@ -24,7 +24,7 @@ export class gameManager extends Component {
     @property(pigController)
     pig: pigController | null = null;
 
-    @property(bgController)
+    @property
     bg: bgController | null = null;
 
     //记分板
