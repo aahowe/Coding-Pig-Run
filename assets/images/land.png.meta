@@ -2,7 +2,11 @@
   "ver": "1.0.22",
   "importer": "image",
   "imported": true,
+<<<<<<< Updated upstream
   "uuid": "ab5b1138-d0f5-473f-a98d-07a2baa2df99",
+=======
+  "uuid": "a11bb8ab-ba04-4a47-8eac-ce3132c7090d",
+>>>>>>> Stashed changes
   "files": [
     ".png",
     ".json"
@@ -10,14 +14,22 @@
   "subMetas": {
     "6c48a": {
       "importer": "texture",
+<<<<<<< Updated upstream
       "uuid": "ab5b1138-d0f5-473f-a98d-07a2baa2df99@6c48a",
+=======
+      "uuid": "a11bb8ab-ba04-4a47-8eac-ce3132c7090d@6c48a",
+>>>>>>> Stashed changes
       "displayName": "land",
       "id": "6c48a",
       "name": "texture",
       "userData": {
         "wrapModeS": "clamp-to-edge",
         "wrapModeT": "clamp-to-edge",
+<<<<<<< Updated upstream
         "imageUuidOrDatabaseUri": "ab5b1138-d0f5-473f-a98d-07a2baa2df99",
+=======
+        "imageUuidOrDatabaseUri": "a11bb8ab-ba04-4a47-8eac-ce3132c7090d",
+>>>>>>> Stashed changes
         "minfilter": "linear",
         "magfilter": "linear",
         "mipfilter": "none",
@@ -33,7 +45,11 @@
     },
     "f9941": {
       "importer": "sprite-frame",
+<<<<<<< Updated upstream
       "uuid": "ab5b1138-d0f5-473f-a98d-07a2baa2df99@f9941",
+=======
+      "uuid": "a11bb8ab-ba04-4a47-8eac-ce3132c7090d@f9941",
+>>>>>>> Stashed changes
       "displayName": "land",
       "id": "f9941",
       "name": "spriteFrame",
@@ -55,7 +71,11 @@
         "borderRight": 0,
         "packable": true,
         "isUuid": true,
+<<<<<<< Updated upstream
         "imageUuidOrDatabaseUri": "ab5b1138-d0f5-473f-a98d-07a2baa2df99@6c48a",
+=======
+        "imageUuidOrDatabaseUri": "a11bb8ab-ba04-4a47-8eac-ce3132c7090d@6c48a",
+>>>>>>> Stashed changes
         "atlasUuid": ""
       },
       "ver": "1.0.9",
@@ -69,6 +89,10 @@
   "userData": {
     "type": "sprite-frame",
     "hasAlpha": true,
+<<<<<<< Updated upstream
     "redirect": "ab5b1138-d0f5-473f-a98d-07a2baa2df99@f9941"
+=======
+    "redirect": "a11bb8ab-ba04-4a47-8eac-ce3132c7090d@f9941"
+>>>>>>> Stashed changes
   }
 }
