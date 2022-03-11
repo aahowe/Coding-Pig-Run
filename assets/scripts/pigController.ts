@@ -2,36 +2,24 @@
 import { _decorator, Component, RigidBody2D, Vec2, Collider2D, Contact2DType, CircleCollider2D, IPhysics2DContact, Label, game } from 'cc';
 const { ccclass, property } = _decorator;
 
-/**
- * Predefined variables
- * Name = birdController
- * DateTime = Sat Mar 05 2022 21:22:19 GMT+0800 (中国标准时间)
- * Author = aahowe
- * FileBasename = birdController.ts
- * FileBasenameNoExtension = birdController
- * URL = db://assets/scripts/birdController.ts
- * ManualUrl = https://docs.cocos.com/creator/3.4/manual/zh/
- *
- */
 
-@ccclass('birdController')
-export class birdController extends Component {
+@ccclass('pigController')
+export class pigController extends Component {
 
-    flyspeed: number = 10;
-    //得分
+    //飞行往上的速度
     @property
-    score: number = 0;
-    //记分板
-    @property({ type: Label })
-    public scoreLable: Label | null = null;
+    flyspeed: number = 7;
 
-    //更新得分
-    setScoreLable(score: number) {
-        this.scoreLable.string = '' + score;
-    }
-    //飞行方法
+
+    //飞行
     fly() {
+        this.getComponent(RigidBody2D).gravityScale = 0;
         this.getComponent(RigidBody2D).linearVelocity = new Vec2(0, this.flyspeed);
+    }
+    //下降
+    unfly() {
+        this.getComponent(RigidBody2D).gravityScale = 2;
+        //this.getComponent(RigidBody2D).linearVelocity = new Vec2(0, -this.flyspeed);
     }
 
     start() {
@@ -47,9 +35,7 @@ export class birdController extends Component {
         //如果碰撞物体是管道间的计分器
         if (otherCollider.tag == 1) {
             console.info("得分");
-            this.score += 1;
-            //更新得分
-            this.setScoreLable(this.score);
+
         } else {
             console.info("死亡");
         }

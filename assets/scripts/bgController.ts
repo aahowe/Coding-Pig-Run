@@ -26,13 +26,7 @@ export class bgController extends Component {
 
 
     start() {
-        // //遍历子节点
-        // for (let bg of this.node.children) {
-        //     //监听触摸，触发则调用birdController的飞行方法
-        //     bg.on(Node.EventType.TOUCH_START, () => {
-        //         this.bird.fly();
-        //     }, this);
-        // }
+
     }
 
     update(deltaTime: number) {

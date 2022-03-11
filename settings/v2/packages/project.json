@@ -6,5 +6,10 @@
       "fitHeight": true,
       "fitWidth": false
     }
+  },
+  "physics": {
+    "defaultMaterial": {
+      "restitution": 0.5
+    }
   }
 }
