@@ -2,22 +2,22 @@
   "ver": "1.0.22",
   "importer": "image",
   "imported": true,
-  "uuid": "3de4a5b6-d025-49be-9c0f-c89cbda75da7",
+  "uuid": "fa48f509-9999-4913-b3d5-de4a03dcf519",
   "files": [
-    ".webp",
+    ".png",
     ".json"
   ],
   "subMetas": {
     "6c48a": {
       "importer": "texture",
-      "uuid": "3de4a5b6-d025-49be-9c0f-c89cbda75da7@6c48a",
-      "displayName": "Diamond_JE2_BE2",
+      "uuid": "fa48f509-9999-4913-b3d5-de4a03dcf519@6c48a",
+      "displayName": "obsu",
       "id": "6c48a",
       "name": "texture",
       "userData": {
         "wrapModeS": "clamp-to-edge",
         "wrapModeT": "clamp-to-edge",
-        "imageUuidOrDatabaseUri": "3de4a5b6-d025-49be-9c0f-c89cbda75da7",
+        "imageUuidOrDatabaseUri": "fa48f509-9999-4913-b3d5-de4a03dcf519",
         "minfilter": "linear",
         "magfilter": "linear",
         "mipfilter": "none",
@@ -33,8 +33,8 @@
     },
     "f9941": {
       "importer": "sprite-frame",
-      "uuid": "3de4a5b6-d025-49be-9c0f-c89cbda75da7@f9941",
-      "displayName": "Diamond_JE2_BE2",
+      "uuid": "fa48f509-9999-4913-b3d5-de4a03dcf519@f9941",
+      "displayName": "obsu",
       "id": "f9941",
       "name": "spriteFrame",
       "userData": {
@@ -42,20 +42,20 @@
         "trimThreshold": 1,
         "rotated": false,
         "offsetX": 0,
-        "offsetY": -5,
-        "trimX": 20,
-        "trimY": 20,
-        "width": 120,
-        "height": 130,
-        "rawWidth": 160,
-        "rawHeight": 160,
+        "offsetY": 0,
+        "trimX": 0,
+        "trimY": 0,
+        "width": 40,
+        "height": 960,
+        "rawWidth": 40,
+        "rawHeight": 960,
         "borderTop": 0,
         "borderBottom": 0,
         "borderLeft": 0,
         "borderRight": 0,
         "packable": true,
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "3de4a5b6-d025-49be-9c0f-c89cbda75da7@6c48a",
+        "imageUuidOrDatabaseUri": "fa48f509-9999-4913-b3d5-de4a03dcf519@6c48a",
         "atlasUuid": ""
       },
       "ver": "1.0.9",
@@ -69,6 +69,6 @@
   "userData": {
     "type": "sprite-frame",
     "hasAlpha": true,
-    "redirect": "3de4a5b6-d025-49be-9c0f-c89cbda75da7@f9941"
+    "redirect": "fa48f509-9999-4913-b3d5-de4a03dcf519@f9941"
   }
 }

@@ -1,14 +1,46 @@
 
-import { _decorator, Component, Node, Vec3 } from 'cc';
+import { _decorator, Component, Node, Vec3, GbufferStage, Prefab, instantiate, math } from 'cc';
 const { ccclass, property } = _decorator;
 
-
+enum obsType {
+    HOLE,
+    UP,
+    DOWN,
+};
 
 @ccclass('obstaclecontroller')
 export class obstaclecontroller extends Component {
     //管道移动速度
     @property
-    speed: number = 100;
+    speed: number = 150;
+
+    @property({ type: Prefab })
+    public holePrfb: Prefab | null = null;
+
+    @property({ type: Prefab })
+    public upPrfb: Prefab | null = null;
+
+    @property({ type: Prefab })
+    public downPrfb: Prefab | null = null;
+
+
+    makeObs(type: obsType) {
+        if (!this.holePrfb || !this.upPrfb || this.downPrfb) {
+            return null;
+        }
+        let obs: Node | null = null;
+        switch (type) {
+            case obsType.HOLE:
+                obs = instantiate(this.holePrfb);
+                break;
+            case obsType.DOWN:
+                obs = instantiate(this.downPrfb);
+                break;
+            case obsType.UP:
+                obs = instantiate(this.upPrfb);
+        }
+        return obs;
+    }
 
     start() {
         // [3]
@@ -19,24 +51,33 @@ export class obstaclecontroller extends Component {
         for (let bg of this.node.children) {
             //计算下一帧移动到的位置
             let x: number = bg.position.x - this.speed * deltaTime;
-            let y: number = bg.position.y;
             //设置新位置
-            bg.setPosition(new Vec3(x, y, 0));
+            bg.setPosition(new Vec3(x, bg.position.y, 0));
             //如果背景图出了视野则移动到后方等待下一轮循环
-            if (bg.position.x < -400) {
-                //y值赋值为随机数，达到随机柱子高度的效果
-                y = Math.random() * 100;
-                bg.setPosition(new Vec3(x + 400, y, 0));
+            if (bg.position.x < -200) {
+                // if (bg.name = "up") {
+                //     //y值赋值为随机数，达到随机柱子高度的效果
+                //     bg.setPosition(new Vec3(x + 701, Math.random() * 174 - 9, 0));
+                // } else {
+                //     bg.setPosition(new Vec3(x + 800, bg.position.y, 0));
+                // }
+                let typenum = 3 * Math.random();
+                if (typenum <= 1) {
+                    let obs: Node | null = this.makeObs(obsType.DOWN);
+                    if (obs) {
+                        this.node.addChild(obs);
+                        obs?.setScale(count, 1, 1);
+                        obs?.setPosition(lastPos - (count - 1) * 0.5, -1.5, 0);
+                    }
+                } else if (typenum <= 2) {
+
+                } else {
+
+                }
             }
         }
     }
 
-    //重置管道
-    reset() {
-        this.node.children[0].setPosition(new Vec3(174, 256, 0));
-        this.node.children[1].setPosition(new Vec3(374, 163, 0));
-        this.speed = 100;
-    }
 }
 
 

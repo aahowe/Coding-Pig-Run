@@ -8,24 +8,11 @@ const { ccclass, property } = _decorator;
 @ccclass('pigController')
 export class pigController extends Component {
 
-    flyspeed: number = 7;
-
-    @property
-    gm: gameManager | null = null;
-
-    //飞行
-    fly() {
-        this.getComponent(RigidBody2D).gravityScale = 0;
-        this.getComponent(RigidBody2D).linearVelocity = new Vec2(0, this.flyspeed);
-    }
-    //下降
-    unfly() {
-        this.getComponent(RigidBody2D).gravityScale = 2;
-        //this.getComponent(RigidBody2D).linearVelocity = new Vec2(0, -this.flyspeed);
-    }
-
+    @property({ type: gameManager })
+    public game: gameManager | null = null;
 
     start() {
+        this.getComponent(RigidBody2D).gravityScale = 0;
         // 注册单个碰撞体的回调函数
         let collider = this.getComponent(PolygonCollider2D);
         if (collider) {
@@ -41,7 +28,7 @@ export class pigController extends Component {
 
         } else {
             console.info("end");
-
+            this.game.endGame();
         }
     }
 

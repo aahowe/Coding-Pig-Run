@@ -1,7 +1,8 @@
 
 import { _decorator, Component, Node, input, Input, EventTouch, SpotLightComponent, Label, ButtonComponent, Sprite, RigidBody2D, Vec3, Vec2 } from 'cc';
 import { bgController } from './bgController';
-import { pigController } from './pigController';
+import { landController } from './landController';
+import { obstaclecontroller } from './obstaclecontroller';
 const { ccclass, property } = _decorator;
 
 /**
@@ -21,8 +22,11 @@ export class gameManager extends Component {
 
     score: number = 0
 
-    @property(pigController)
-    pig: pigController | null = null;
+    @property(landController)
+    land: landController | null = null;
+
+    @property(obstaclecontroller)
+    oba: obstaclecontroller | null = null;
 
     @property
     bg: bgController | null = null;
@@ -42,12 +46,15 @@ export class gameManager extends Component {
         }
     }
     //触摸结束
-    onTouchEnd(event: EventTouch) {
-        this.pig.unfly();
+    onTouchStart(event: EventTouch) {
+        console.info("touch");
+        this.node.getChildByName("pig").getComponent(RigidBody2D).gravityScale = 0;
+        this.node.getChildByName("pig").getComponent(RigidBody2D).linearVelocity = new Vec2(0, 7);
     }
     //触摸开始
-    onTouchStart(event: EventTouch) {
-        this.pig.fly();
+    onTouchEnd(event: EventTouch) {
+        console.info("untouch");
+        this.node.getChildByName("pig").getComponent(RigidBody2D).gravityScale = 2;
     }
 
     //初始化方法
@@ -56,7 +63,7 @@ export class gameManager extends Component {
         this.node.getChildByName("restart").getComponent(Sprite).enabled = false;
         this.node.getChildByName("restart").getComponent(ButtonComponent).enabled = false;
         //设置管道不移动
-        //this.pipe.speed = 0;
+        //this.oba.speed = 0;
         //显示play按钮
         this.node.getChildByName("start").getComponent(Sprite).enabled = true;
         this.node.getChildByName("start").getComponent(ButtonComponent).enabled = true;
@@ -70,15 +77,15 @@ export class gameManager extends Component {
         this.node.getChildByName("start").getComponent(ButtonComponent).enabled = false;
         this.node.getChildByName("start").getComponent(Sprite).enabled = false;
         //初始化管道
-        //this.pipe.reset();
+        //this.oba.reset();
     }
 
     //结束游戏
     endGame() {
         //添加重力
-        this.pig.getComponent(RigidBody2D).gravityScale = 2;
+        this.node.getChildByName("pig").getComponent(RigidBody2D).gravityScale = 2;
         //关闭监听碰撞
-        this.pig.getComponent(RigidBody2D).enabledContactListener = false;
+        this.node.getChildByName("pig").getComponent(RigidBody2D).enabledContactListener = false;
         //关闭监听触摸
         this.setInputActive(false);
         setTimeout(() => {
@@ -89,9 +96,9 @@ export class gameManager extends Component {
         //背景停止移动
         this.bg.speed = 0;
         //地面停止移动
-        //this.land.speed = 0;
+        this.land.speed = 0;
         //管道停止移动
-        //this.pipe.speed = 0;
+        //this.oba.speed = 0;
     }
 
     //重新游戏
@@ -100,21 +107,21 @@ export class gameManager extends Component {
         this.node.getChildByName("restart").getComponent(Sprite).enabled = false;
         this.node.getChildByName("restart").getComponent(ButtonComponent).enabled = false;
         //猪归位
-        this.pig.node.setPosition(new Vec3(0, 0, 0));
+        this.node.getChildByName("pig").setPosition(new Vec3(0, 0, 0));
         //管道归位
         // this.pipe.reset();
         // this.pipe.speed = 0;
         //背景恢复
         this.bg.speed = 50;
         //地面恢复
-        //this.land.speed = 100;
+        this.land.speed = 100;
         //设置得分和记分板为0
         this.score = 0;
         this.scoreLable.string = '' + 0;
         //开启监听碰撞
-        this.pig.getComponent(RigidBody2D).enabledContactListener = true;
+        this.node.getChildByName("pig").getComponent(RigidBody2D).enabledContactListener = true;
         //pig速度归零
-        this.pig.getComponent(RigidBody2D).linearVelocity = new Vec2(0, 0);
+        this.node.getChildByName("pig").getComponent(RigidBody2D).linearVelocity = new Vec2(0, 0);
         //初始化游戏
         this.init();
     }
