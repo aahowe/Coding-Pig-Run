@@ -66,13 +66,23 @@ export class obstaclecontroller extends Component {
                     let obs: Node | null = this.makeObs(obsType.DOWN);
                     if (obs) {
                         this.node.addChild(obs);
-                        obs?.setScale(count, 1, 1);
-                        obs?.setPosition(lastPos - (count - 1) * 0.5, -1.5, 0);
+                        //obs?.setScale(count, 1, 1);
+                        obs?.setPosition(188, -430, 0);
                     }
                 } else if (typenum <= 2) {
-
+                    let obs: Node | null = this.makeObs(obsType.DOWN);
+                    if (obs) {
+                        this.node.addChild(obs);
+                        //obs?.setScale(count, 1, 1);
+                        obs?.setPosition(188, -430, 0);
+                    }
                 } else {
-
+                    let obs: Node | null = this.makeObs(obsType.DOWN);
+                    if (obs) {
+                        this.node.addChild(obs);
+                        //obs?.setScale(count, 1, 1);
+                        obs?.setPosition(188, -430, 0);
+                    }
                 }
             }
         }
