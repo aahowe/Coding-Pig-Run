@@ -6,13 +6,14 @@ enum obsType {
     HOLE,
     UP,
     DOWN,
+    SIGN,
 };
 
 @ccclass('obstaclecontroller')
 export class obstaclecontroller extends Component {
-    //管道移动速度
+    //移动速度
     @property
-    speed: number = 150;
+    speed: number = 120;
 
     @property({ type: Prefab })
     public holePrfb: Prefab | null = null;
@@ -23,11 +24,11 @@ export class obstaclecontroller extends Component {
     @property({ type: Prefab })
     public downPrfb: Prefab | null = null;
 
+    @property({ type: Prefab })
+    public signPrfb: Prefab | null = null;
 
-    makeObs(type: obsType) {
-        if (!this.holePrfb || !this.upPrfb || this.downPrfb) {
-            return null;
-        }
+
+    makeObs(type: obsType): Node {
         let obs: Node | null = null;
         switch (type) {
             case obsType.HOLE:
@@ -38,8 +39,46 @@ export class obstaclecontroller extends Component {
                 break;
             case obsType.UP:
                 obs = instantiate(this.upPrfb);
+                break;
+            case obsType.SIGN:
+                obs = instantiate(this.signPrfb);
+                break;
         }
         return obs;
+    }
+
+    randomObs(distance: number) {
+        let typenum = 4 * Math.random();
+        if (typenum <= 1) {
+            let obs: Node = this.makeObs(obsType.DOWN);
+            if (obs) {
+                this.node.addChild(obs);
+                obs.setPosition(distance, -500, 0);
+            }
+        } else if (typenum <= 2) {
+            let obs: Node = this.makeObs(obsType.HOLE);
+            if (obs) {
+                this.node.addChild(obs);
+                obs.setPosition(distance, 155, 0);
+            }
+        } else if (typenum <= 3) {
+            let obs: Node = this.makeObs(obsType.SIGN);
+            if (obs) {
+                this.node.addChild(obs);
+                obs.setPosition(distance, -316, 0);
+            }
+        } else {
+            let obs: Node = this.makeObs(obsType.UP);
+            if (obs) {
+                this.node.addChild(obs);
+                obs.setPosition(distance, 270, 0);
+            }
+        }
+    }
+
+    reset() {
+        this.node.removeAllChildren();
+        this.randomObs(800);
     }
 
     start() {
@@ -55,35 +94,8 @@ export class obstaclecontroller extends Component {
             bg.setPosition(new Vec3(x, bg.position.y, 0));
             //如果背景图出了视野则移动到后方等待下一轮循环
             if (bg.position.x < -200) {
-                // if (bg.name = "up") {
-                //     //y值赋值为随机数，达到随机柱子高度的效果
-                //     bg.setPosition(new Vec3(x + 701, Math.random() * 174 - 9, 0));
-                // } else {
-                //     bg.setPosition(new Vec3(x + 800, bg.position.y, 0));
-                // }
-                let typenum = 3 * Math.random();
-                if (typenum <= 1) {
-                    let obs: Node | null = this.makeObs(obsType.DOWN);
-                    if (obs) {
-                        this.node.addChild(obs);
-                        //obs?.setScale(count, 1, 1);
-                        obs?.setPosition(188, -430, 0);
-                    }
-                } else if (typenum <= 2) {
-                    let obs: Node | null = this.makeObs(obsType.DOWN);
-                    if (obs) {
-                        this.node.addChild(obs);
-                        //obs?.setScale(count, 1, 1);
-                        obs?.setPosition(188, -430, 0);
-                    }
-                } else {
-                    let obs: Node | null = this.makeObs(obsType.DOWN);
-                    if (obs) {
-                        this.node.addChild(obs);
-                        //obs?.setScale(count, 1, 1);
-                        obs?.setPosition(188, -430, 0);
-                    }
-                }
+                this.randomObs(188);
+                bg.destroy();
             }
         }
     }

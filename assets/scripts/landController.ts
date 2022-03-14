@@ -9,7 +9,7 @@ export class landController extends Component {
 
     //背景移动速度
     @property
-    speed: number = 150;
+    speed: number = 120;
     //背景宽度
     @property
     width: number = 320;

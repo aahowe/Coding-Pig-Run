@@ -1,5 +1,6 @@
 
-import { _decorator, Component, Node, input, Input, EventTouch, SpotLightComponent, Label, ButtonComponent, Sprite, RigidBody2D, Vec3, Vec2 } from 'cc';
+import { _decorator, Component, Node, input, Input, EventTouch, Label, ButtonComponent, Sprite, RigidBody2D, Vec3, Vec2, animation, Animation } from 'cc';
+import { audioManager } from './audioManager';
 import { bgController } from './bgController';
 import { landController } from './landController';
 import { obstaclecontroller } from './obstaclecontroller';
@@ -26,10 +27,13 @@ export class gameManager extends Component {
     land: landController | null = null;
 
     @property(obstaclecontroller)
-    oba: obstaclecontroller | null = null;
+    obs: obstaclecontroller | null = null;
 
     @property
     bg: bgController | null = null;
+
+    @property(audioManager)
+    audio: audioManager | null = null;
 
     //记分板
     @property({ type: Label })
@@ -45,60 +49,69 @@ export class gameManager extends Component {
             input.off(Input.EventType.TOUCH_END, this.onTouchEnd, this);
         }
     }
-    //触摸结束
-    onTouchStart(event: EventTouch) {
-        console.info("touch");
-        this.node.getChildByName("pig").getComponent(RigidBody2D).gravityScale = 0;
-        this.node.getChildByName("pig").getComponent(RigidBody2D).linearVelocity = new Vec2(0, 7);
-    }
     //触摸开始
+    onTouchStart(event: EventTouch) {
+        this.audio.play("jump");
+        this.node.getChildByName("pig").getComponent(RigidBody2D).gravityScale = 0;
+        this.node.getChildByName("pig").getComponent(RigidBody2D).linearVelocity = new Vec2(0, 10);
+    }
+
+    //触摸结束
     onTouchEnd(event: EventTouch) {
-        console.info("untouch");
-        this.node.getChildByName("pig").getComponent(RigidBody2D).gravityScale = 2;
+        this.node.getChildByName("pig").getComponent(RigidBody2D).gravityScale = 2.5;
+        //this.node.getChildByName("pig").getComponent(RigidBody2D).linearVelocity = new Vec2(0, -15);
     }
 
     //初始化方法
     init() {
+        //禁用按钮
+        this.node.getChildByName("start").getComponent(ButtonComponent).enabled = false;
+        //播放动画
+        this.node.getChildByName("pig").getComponent(Animation).play("pig_in");
         //取消显示restart
         this.node.getChildByName("restart").getComponent(Sprite).enabled = false;
         this.node.getChildByName("restart").getComponent(ButtonComponent).enabled = false;
         //设置管道不移动
-        //this.oba.speed = 0;
+        this.obs.speed = 0;
         //显示play按钮
-        this.node.getChildByName("start").getComponent(Sprite).enabled = true;
-        this.node.getChildByName("start").getComponent(ButtonComponent).enabled = true;
+        setTimeout(() => {
+            this.node.getChildByName("start").getComponent(Sprite).enabled = true;
+            this.node.getChildByName("start").getComponent(ButtonComponent).enabled = true;
+        }, 2500);
     }
 
     //开始游戏
     startGame() {
-        //启用监听
-        this.setInputActive(true);
+        this.node.getChildByName("pig").getComponent(Animation).play("piganim");
+        this.audio.play("button");
         //禁用play按钮
         this.node.getChildByName("start").getComponent(ButtonComponent).enabled = false;
         this.node.getChildByName("start").getComponent(Sprite).enabled = false;
         //初始化管道
-        //this.oba.reset();
+        this.obs.reset();
+        this.obs.speed = 120;
+        //启用监听
+        this.setInputActive(true);
     }
 
     //结束游戏
     endGame() {
+        this.audio.play("die");
         //添加重力
         this.node.getChildByName("pig").getComponent(RigidBody2D).gravityScale = 2;
         //关闭监听碰撞
         this.node.getChildByName("pig").getComponent(RigidBody2D).enabledContactListener = false;
         //关闭监听触摸
         this.setInputActive(false);
-        setTimeout(() => {
-            //显示restart
-            this.node.getChildByName("restart").getComponent(Sprite).enabled = true;
-            this.node.getChildByName("restart").getComponent(ButtonComponent).enabled = true;
-        }, 1000)
+        //显示restart
+        this.node.getChildByName("restart").getComponent(Sprite).enabled = true;
+        this.node.getChildByName("restart").getComponent(ButtonComponent).enabled = true;
         //背景停止移动
         this.bg.speed = 0;
         //地面停止移动
         this.land.speed = 0;
-        //管道停止移动
-        //this.oba.speed = 0;
+        //障碍停止移动
+        this.obs.speed = 0;
     }
 
     //重新游戏
@@ -107,14 +120,15 @@ export class gameManager extends Component {
         this.node.getChildByName("restart").getComponent(Sprite).enabled = false;
         this.node.getChildByName("restart").getComponent(ButtonComponent).enabled = false;
         //猪归位
-        this.node.getChildByName("pig").setPosition(new Vec3(0, 0, 0));
-        //管道归位
-        // this.pipe.reset();
-        // this.pipe.speed = 0;
+        this.node.getChildByName("pig").setPosition(new Vec3(0, -148, 0));
+        this.node.getChildByName("pig").getComponent(RigidBody2D).gravityScale = 0;
+        //障碍归位
+        this.obs.reset();
+        this.obs.speed = 0;
         //背景恢复
         this.bg.speed = 50;
         //地面恢复
-        this.land.speed = 100;
+        this.land.speed = 120;
         //设置得分和记分板为0
         this.score = 0;
         this.scoreLable.string = '' + 0;
