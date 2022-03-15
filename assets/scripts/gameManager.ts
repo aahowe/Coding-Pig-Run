@@ -64,6 +64,7 @@ export class gameManager extends Component {
 
     //初始化方法
     init() {
+        this.scoreLable.enabled = false;
         //禁用按钮
         this.node.getChildByName("start").getComponent(ButtonComponent).enabled = false;
         //播放动画
@@ -82,7 +83,11 @@ export class gameManager extends Component {
 
     //开始游戏
     startGame() {
+        //开启记分板
+        this.scoreLable.enabled = true;
+        //播放飞入动画
         this.node.getChildByName("pig").getComponent(Animation).play("piganim");
+        //按钮音效
         this.audio.play("button");
         //禁用play按钮
         this.node.getChildByName("start").getComponent(ButtonComponent).enabled = false;
@@ -98,7 +103,7 @@ export class gameManager extends Component {
     endGame() {
         this.audio.play("die");
         //添加重力
-        this.node.getChildByName("pig").getComponent(RigidBody2D).gravityScale = 2;
+        this.node.getChildByName("pig").getComponent(RigidBody2D).gravityScale = 2.5;
         //关闭监听碰撞
         this.node.getChildByName("pig").getComponent(RigidBody2D).enabledContactListener = false;
         //关闭监听触摸
@@ -116,6 +121,8 @@ export class gameManager extends Component {
 
     //重新游戏
     restart() {
+        //按钮音效
+        this.audio.play("button");
         //取消显示restart
         this.node.getChildByName("restart").getComponent(Sprite).enabled = false;
         this.node.getChildByName("restart").getComponent(ButtonComponent).enabled = false;

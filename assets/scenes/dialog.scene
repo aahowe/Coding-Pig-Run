@@ -872,7 +872,7 @@
     "_overflow": 0,
     "_enableWrapText": true,
     "_font": {
-      "__uuid__": "06559f0b-059a-484c-94ba-16ac61ee7230",
+      "__uuid__": "0d19f167-5495-4ebd-985b-57127c691e61",
       "__expectedType__": "cc.TTFFont"
     },
     "_isSystemFontUsed": false,
@@ -966,7 +966,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 320,
+      "width": 400,
       "height": 675
     },
     "_anchorPoint": {

@@ -54,8 +54,7 @@ export class treasureController extends Component {
     //随机生成宝石
     random() {
         let ran: number = 100 * Math.random();
-        //生成几率为50%
-        if (ran <= 50) {
+        if (ran <= 50) {  //生成几率为50%
             if (ran <= 20) {  //上部分20%
                 this.put(650, 120);
             } else if (ran >= 30) {  //下部分20%

@@ -47,6 +47,11 @@ export class diaglogController extends Component {
 
     start() {
 
+        director.preloadScene("main", function () {
+            console.log('main preloaded');
+        });
+
+
         this.msgs = [
             new Message('', '', '夜晚，一只程序猪破防了'),
             new Message('', '', '程序蘑菇却不以为然'),
@@ -62,9 +67,6 @@ export class diaglogController extends Component {
 
 
         this.node.on(Node.EventType.TOUCH_START, (Event) => {
-
-
-
             if (this.index < this.msgs.length) {
                 this.audioSource.playOneShot(this.dialog, 0.5);
 

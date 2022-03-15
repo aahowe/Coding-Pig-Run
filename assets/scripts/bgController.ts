@@ -22,7 +22,7 @@ export class bgController extends Component {
     speed: number = 50;
     //背景宽度
     @property
-    width: number = 320;
+    width: number = 400;
 
 
     start() {

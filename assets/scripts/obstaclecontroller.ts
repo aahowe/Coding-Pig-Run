@@ -94,7 +94,7 @@ export class obstaclecontroller extends Component {
             bg.setPosition(new Vec3(x, bg.position.y, 0));
             //如果背景图出了视野则移动到后方等待下一轮循环
             if (bg.position.x < -200) {
-                this.randomObs(188);
+                this.randomObs(220);
                 bg.destroy();
             }
         }
