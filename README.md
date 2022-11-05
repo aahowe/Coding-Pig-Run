@@ -11,13 +11,9 @@
 
 ## 游戏截图
 
-<img src="https://cdn.jsdelivr.net/gh/aahowe/image@main/IMG_9429.PNG" alt="IMG_9429" style="zoom: 25%;" /><img src="https://cdn.jsdelivr.net/gh/aahowe/image@main/IMG_9430.PNG" alt="IMG_9430" style="zoom:25%;" />
-
-
-
-<img src="https://cdn.jsdelivr.net/gh/aahowe/image@main/IMG_9437.PNG" alt="IMG_9437" style="zoom:25%;" /><img src="https://cdn.jsdelivr.net/gh/aahowe/image@main/IMG_9436.PNG" alt="IMG_9436" style="zoom:25%;" /><img src="https://cdn.jsdelivr.net/gh/aahowe/image@main/IMG_9434.PNG" alt="IMG_9434" style="zoom:25%;" />
-
-
+| <img src="https://cdn.jsdelivr.net/gh/aahowe/image@main/IMG_9429.PNG" alt="IMG_9429" style="zoom: 25%;" /> | <img src="https://cdn.jsdelivr.net/gh/aahowe/image@main/IMG_9430.PNG" alt="IMG_9430" style="zoom:25%;" /> | <img src="https://cdn.jsdelivr.net/gh/aahowe/image@main/IMG_9430.PNG" alt="IMG_9430" style="zoom:25%;" /> |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| <img src="https://cdn.jsdelivr.net/gh/aahowe/image@main/IMG_9437.PNG" alt="IMG_9437" style="zoom:25%;" /> | <img src="https://cdn.jsdelivr.net/gh/aahowe/image@main/IMG_9436.PNG" alt="IMG_9436" style="zoom:25%;" /> | <img src="https://cdn.jsdelivr.net/gh/aahowe/image@main/IMG_9434.PNG" alt="IMG_9434" style="zoom:25%;" /> |
 
 
 
